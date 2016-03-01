@@ -88,7 +88,9 @@ parse_frame(Bin, #mqtt_packet_header{type = Type, qos  = Qos} = Header, Length) 
             {WillTopic, Rest5} = parse_utf(Rest4, WillFlag),
             {WillMsg,   Rest6} = parse_msg(Rest5, WillFlag),
             {UserName,  Rest7} = parse_utf(Rest6, UsernameFlag),
-            {PasssWord, <<>>}  = parse_utf(Rest7, PasswordFlag),
+            {PasssWord, Rest8}  = parse_utf(Rest7, PasswordFlag),
+			{DsdOpt, <<>>}  = parse_utf(Rest8, 1),
+			lager:info("DsdOpt received:~p",[DsdOpt]),
             case protocol_name_approved(ProtoVersion, ProtoName) of
                 true ->
                     wrap(Header,
