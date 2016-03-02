@@ -21,15 +21,19 @@ process(Message = #mqtt_message{topic = Topic, payload = Data})->
 	case dsd_datastore_filters:get_filter(Topic) of
 		undefined -> lager:error("No filter is defined for Topic:~p",[Topic]);
 		Filter ->
-			N_Data = normalize_data(Data),
+			N_Data = normalize_data(Topic,Data),
 			case Filter(N_Data) of
 				true ->
-					lager:error("Filter function returns TRUE for toipc:~p",[Topic]);
+					lager:error("Filter TRUE"),
+					dsd_datastore_db:store(Data),
+					done;
 				false ->
-					lager:error("Filter function returns FALSE for topic:~p",[Topic])
+					lager:error("Filter FALSE"),
+					done
 			end
 		end.
 
-normalize_data(Data)->
+normalize_data(<<"evenlength">>,Data)->
+	erlang:binary_to_list(Data);
+normalize_data(_,Data)->
 	erlang:binary_to_integer(Data).
-	

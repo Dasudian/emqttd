@@ -30,6 +30,7 @@
 
 %% Called when the plugin application start
 load(Env) ->
+	dsd_datastore_db:init(),
 
     emqttd_broker:hook('client.connected', {?MODULE, on_client_connected},
                        {?MODULE, on_client_connected, [Env]}),
@@ -82,7 +83,7 @@ on_message_publish(Message = #mqtt_message{topic = <<"$SYS/", _/binary>>}, _Env)
 
 on_message_publish(Message, _Env) ->
 %    io:format("publish ~s~n", [emqttd_message:format(Message)]),
-	 dsd_datastore_process:process(Message), 
+	 done = dsd_datastore_process:process(Message), 
      Message.
 
 on_message_acked(ClientId, Message, _Env) ->

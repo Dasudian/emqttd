@@ -5,7 +5,9 @@
   {registered, []},
   {applications, [
                   kernel,
-                  stdlib
+                  stdlib,
+				  dsd_riak,
+				  pooler
                  ]},
   {mod, { dsd_datastore_app, []}},
   {env, []}
