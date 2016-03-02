@@ -14,7 +14,7 @@ Simulated the scenario in which device sends data to the server, server upon rec
 2. MQTT-SERVER receives the data and according to the TOPIC evenlength runs a filter.  
 3. This filter checks if the length of string is even or not.  
 4. If filter returns true data is stored in DSDB, else not.  
-6. Acknowledgement is sent to the MQTT-CLIENT.  
+5. Acknowledgement is sent to the MQTT-CLIENT.  
 
 The above test-case is executed 1000 times below are the results:  
 1. When the test case is executed with an odd length string and data is not stored in DB it took __57149 microseconds__.  
