@@ -1,0 +1,14 @@
+{application, dsd_datastore,
+ [
+  {description, "dsd data store"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+				  dsd_riak,
+				  pooler
+                 ]},
+  {mod, { dsd_datastore_app, []}},
+  {env, []}
+ ]}.
