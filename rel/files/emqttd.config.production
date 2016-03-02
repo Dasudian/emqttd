@@ -17,6 +17,7 @@
     {crash_log, "log/emqttd_crash.log"},
     {handlers, [
         {lager_console_backend, error},
+        %%{lager_console_backend, info},
         %%NOTICE: Level >= error
         %%{lager_emqtt_backend, error},
         {lager_file_backend, [
@@ -29,6 +30,7 @@
         ]}
     ]}
  ]},
+<<<<<<< HEAD
 
  {dsdbc, [
     {db_backend, [
@@ -68,6 +70,8 @@
      ]}
  ]},
 
+=======
+>>>>>>> 4cfa07d774ac825f61d2ea9bb6392807e65839b9
  {esockd, [
     {logger, {lager, error}}
  ]},

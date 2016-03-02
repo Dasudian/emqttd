@@ -13,7 +13,7 @@ Simulated the scenario in which device sends data to the server, server upon rec
 1. MQTT-Client sends a string attached with TOPIC evenlength.  
 2. MQTT-SERVER receives the data and according to the TOPIC evenlength runs a filter.  
 3. This filter checks if the length of string is even or not.  
-4. If filter returns true data is stored in RIAK, else not.  
+4. If filter returns true data is stored in DSDB, else not.  
 6. Acknowledgement is sent to the MQTT-CLIENT.  
 
 The above test-case is executed 1000 times below are the results:  
@@ -22,6 +22,6 @@ The above test-case is executed 1000 times below are the results:
 3. When the test case is executed with alternate even/odd length string and data is stored in DB in alternate rounds it took __6153671 microseconds__.  
 
 ## SPECS
-__DataBase used:__ RIAK  
+__DataBase used:__ DSDB  
 __MQTT-SERVER:__ Running on Ubuntu with 4GB RAM  
 __MQTT-CLIENT:__ Running on Ubuntu with 4GB RAM  

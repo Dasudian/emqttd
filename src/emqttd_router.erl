@@ -86,7 +86,6 @@ route(Topic, Msg) ->
 dropped(<<"$SYS/", _/binary>>) ->
     ok;
 dropped(_Topic) ->
-	io:format("In-here Dropped~n",[]),
     emqttd_metrics:inc('messages/dropped').
 
 %% @doc Has Route?

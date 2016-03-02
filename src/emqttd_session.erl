@@ -175,18 +175,15 @@ publish(_SessPid, Msg = #mqtt_message{qos = ?QOS_0}) ->
 
 publish(_SessPid, Msg = #mqtt_message{qos = ?QOS_1}) ->
     %% publish qos1 directly, and client will puback automatically
-	io:format("In-here-1~n",[]),
     emqttd_pubsub:publish(Msg);
 
 publish(SessPid, Msg = #mqtt_message{qos = ?QOS_2}) ->
     %% publish qos2 by session 
-	io:format("In-here-11~n",[]),
     gen_server2:call(SessPid, {publish, Msg}, ?PUBSUB_TIMEOUT).
 
 %% @doc PubAck message
 -spec puback(pid(), mqtt_packet_id()) -> ok.
 puback(SessPid, PktId) ->
-	io:format("Inside PUBACK~n",[]),
     gen_server2:cast(SessPid, {puback, PktId}).
 
 -spec pubrec(pid(), mqtt_packet_id()) -> ok.
